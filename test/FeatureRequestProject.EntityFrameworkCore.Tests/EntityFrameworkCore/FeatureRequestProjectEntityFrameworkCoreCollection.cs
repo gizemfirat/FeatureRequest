@@ -1,0 +1,9 @@
+﻿using Xunit;
+
+namespace FeatureRequestProject.EntityFrameworkCore;
+
+[CollectionDefinition(FeatureRequestProjectTestConsts.CollectionDefinitionName)]
+public class FeatureRequestProjectEntityFrameworkCoreCollection : ICollectionFixture<FeatureRequestProjectEntityFrameworkCoreFixture>
+{
+
+}

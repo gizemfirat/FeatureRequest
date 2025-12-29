@@ -1,0 +1,9 @@
+﻿using FeatureRequestProject.EntityFrameworkCore;
+using Xunit;
+
+namespace FeatureRequestProject.EntityFrameworkCore;
+
+public class FeatureRequestProjectEntityFrameworkCoreCollectionFixtureBase : ICollectionFixture<FeatureRequestProjectEntityFrameworkCoreFixture>
+{
+
+}

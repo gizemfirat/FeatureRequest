@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FeatureRequestProject.Application.Contracts/FeatureRequestProject.Application.Contracts.csproj" />
+    <Project Path="src/FeatureRequestProject.Application/FeatureRequestProject.Application.csproj" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Project Path="src/FeatureRequestProject.DbMigrator/FeatureRequestProject.DbMigrator.csproj" />
+    <Project Path="src/FeatureRequestProject.Domain.Shared/FeatureRequestProject.Domain.Shared.csproj" />
+    <Project Path="src/FeatureRequestProject.Domain/FeatureRequestProject.Domain.csproj" />
+    <Project Path="src/FeatureRequestProject.EntityFrameworkCore/FeatureRequestProject.EntityFrameworkCore.csproj" />
+    <Project Path="src/FeatureRequestProject.HttpApi.Client/FeatureRequestProject.HttpApi.Client.csproj" />
+    
+    
+    <Project Path="src/FeatureRequestProject.HttpApi/FeatureRequestProject.HttpApi.csproj" />
+    
+    
+    <Project Path="src/FeatureRequestProject.Web/FeatureRequestProject.Web.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/FeatureRequestProject.Application.Tests/FeatureRequestProject.Application.Tests.csproj" />
+    <Project Path="test/FeatureRequestProject.Domain.Tests/FeatureRequestProject.Domain.Tests.csproj" />
+    <Project Path="test/FeatureRequestProject.EntityFrameworkCore.Tests/FeatureRequestProject.EntityFrameworkCore.Tests.csproj" />
+    <Project Path="test/FeatureRequestProject.HttpApi.Client.ConsoleTestApp/FeatureRequestProject.HttpApi.Client.ConsoleTestApp.csproj" />
+    
+    <Project Path="test/FeatureRequestProject.TestBase/FeatureRequestProject.TestBase.csproj" />
+    <Project Path="test/FeatureRequestProject.Web.Tests/FeatureRequestProject.Web.Tests.csproj" />
+  </Folder>
+</Solution>
