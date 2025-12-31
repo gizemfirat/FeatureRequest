@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FeatureRequestProject.FeatureRequestComments;
+using FeatureRequestProject.FeatureRequests;
+using FeatureRequestProject.FeatureRequestVotes;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -26,6 +30,10 @@ public class FeatureRequestProjectDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
     #region Entities from the modules
+
+    public DbSet<FeatureRequest> FeatureRequests { get; set; }
+    public DbSet<FeatureRequestComment> FeatureRequestComments { get; set; }
+    public DbSet<FeatureRequestVote> FeatureRequestVotes { get; set; }
 
     /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
      * and replaced them for this DbContext. This allows you to perform JOIN
@@ -73,6 +81,39 @@ public class FeatureRequestProjectDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
+
+        builder.Entity<FeatureRequest>(f =>
+        {
+            f.ToTable(FeatureRequestProjectConsts.DbTablePrefix + "FeatureRequests",
+                FeatureRequestProjectConsts.DbSchema);
+            f.ConfigureByConvention();
+            f.Property(fr => fr.Title).IsRequired().HasMaxLength(200);
+            f.Property(fr => fr.Description).IsRequired().HasMaxLength(2000);
+        });
+
+        builder.Entity<FeatureRequestComment>(fc =>
+        {
+            fc.ToTable(FeatureRequestProjectConsts.DbTablePrefix + "FeatureRequestComments",
+                FeatureRequestProjectConsts.DbSchema);
+            fc.ConfigureByConvention();
+            fc.Property(c => c.Content).IsRequired();
+            fc.HasOne<FeatureRequest>().WithMany(fr => fr.Comments).HasForeignKey(c => c.FeatureRequestId)
+                .IsRequired().OnDelete(DeleteBehavior.Cascade);
+            fc.HasOne<IdentityUser>().WithMany().HasForeignKey(c => c.UserId)
+                .IsRequired().OnDelete(DeleteBehavior.Cascade);
+        });
+
+        builder.Entity<FeatureRequestVote>(fv =>
+        {
+            fv.ToTable(FeatureRequestProjectConsts.DbTablePrefix + "FeatureRequestVotes",
+                FeatureRequestProjectConsts.DbSchema);
+            fv.ConfigureByConvention();
+            fv.HasOne<FeatureRequest>().WithMany(fr => fr.Votes).HasForeignKey(v => v.FeatureRequestId)
+                .IsRequired().OnDelete(DeleteBehavior.Cascade);
+            fv.HasOne<IdentityUser>().WithMany().HasForeignKey(v => v.UserId)
+                .IsRequired().OnDelete(DeleteBehavior.Cascade);
+            fv.HasIndex(v => new { v.FeatureRequestId, v.UserId }).IsUnique();
+        });
 
         /* Configure your own tables/entities inside here */
 
