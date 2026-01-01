@@ -26,6 +26,8 @@
         "Enum:Status.5": "Rejected",
         "FeatureReguesrDeleteConfirmationMessage": "Are you sure you want to delete this feature request?",
         "FeatureRequestNotFoundMessage": "Feature request not found.",
-        "SuccessfullyDeleted": "Successfully deleted!"
+        "SuccessfullyDeleted": "Successfully deleted!",
+        "DidYouFindThisHelpful": "Did you find this helpfull?",
+        "CommentsComingSoon": "Comments coming soon..."
     }
 }

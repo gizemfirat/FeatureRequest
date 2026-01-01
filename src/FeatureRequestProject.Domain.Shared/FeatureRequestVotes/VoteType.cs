@@ -6,7 +6,7 @@ namespace FeatureRequestProject.FeatureRequestVotes
 {
     public enum VoteType
     {
-        Upvote,
-        Downvote
+        Upvote = 1,
+        Downvote = -1
     };
 }

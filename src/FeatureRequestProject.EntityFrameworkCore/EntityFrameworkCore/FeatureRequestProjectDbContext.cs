@@ -108,10 +108,6 @@ public class FeatureRequestProjectDbContext :
             fv.ToTable(FeatureRequestProjectConsts.DbTablePrefix + "FeatureRequestVotes",
                 FeatureRequestProjectConsts.DbSchema);
             fv.ConfigureByConvention();
-            fv.HasOne<FeatureRequest>().WithMany(fr => fr.Votes).HasForeignKey(v => v.FeatureRequestId)
-                .IsRequired().OnDelete(DeleteBehavior.Cascade);
-            fv.HasOne<IdentityUser>().WithMany().HasForeignKey(v => v.UserId)
-                .IsRequired().OnDelete(DeleteBehavior.Cascade);
             fv.HasIndex(v => new { v.FeatureRequestId, v.UserId }).IsUnique();
         });
 
