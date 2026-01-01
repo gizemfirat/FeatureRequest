@@ -13,9 +13,6 @@ namespace FeatureRequestProject.FeatureRequests
         [StringLength(2000)]
         public string Description { get; set; }
         [Required]
-        public Status Status { get; set; }
-        public int VoteCount { get; set; }
-        [Required]
         public Category CategoryId { get; set; }
     }
 }

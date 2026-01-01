@@ -1,4 +1,5 @@
 using FeatureRequestProject.FeatureRequests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace FeatureRequestProject.Web.Pages.FeatureRequests
             FeatureRequest = new CreateUpdateFeatureRequestDto();
         }
 
+        [Authorize]
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

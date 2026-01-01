@@ -28,6 +28,24 @@
         "FeatureRequestNotFoundMessage": "Feature request not found.",
         "SuccessfullyDeleted": "Successfully deleted!",
         "DidYouFindThisHelpful": "Did you find this helpfull?",
-        "CommentsComingSoon": "Comments coming soon..."
+        "CommentsComingSoon": "Comments coming soon...",
+        "WelcomeTitle": "Feature Request System",
+        "WelcomeSubtitle": "Help us improve our application. Share your ideas, vote on requests from other users, and follow the development process.",
+        "Login": "Login",
+        "WelcomeUser": "Welcome, {0}!",
+        "SeeRequests": "View Requests",
+        "CardCreateTitle": "Create Request",
+        "CardCreateDesc": "Share new features or improvements that come to your mind. Every idea is valuable to us.",
+        "CardVoteTitle": "Vote and Support",
+        "CardVoteDesc": "Review requests created by other users and vote for the ones you like to help them stand out.",
+        "CardTrackTitle": "Track Status",
+        "CardTrackDesc": "Follow the status of requests. See instantly which features are being developed and which are completed.",
+        "FooterRights": "{0} Feature Request App. All rights reserved.",
+        "Comments": "Comments",
+        "NoCommentsYet": "No comments yet. Be the first to comment!",
+        "Send": "Send",
+        "WriteACommentPlaceholder": "Write your comment here...",
+        "LoginToCommentMessage": "Please <a href='{0}' class='alert-link'>login</a> to post a comment.",
+        "WriteAComment":  "Write a Comment"
     }
 }

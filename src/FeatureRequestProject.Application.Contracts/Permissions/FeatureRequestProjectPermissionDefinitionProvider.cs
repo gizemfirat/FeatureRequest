@@ -8,9 +8,12 @@ public class FeatureRequestProjectPermissionDefinitionProvider : PermissionDefin
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(FeatureRequestProjectPermissions.GroupName);
-        //Define your own permissions here. Example:
-        //myGroup.AddPermission(FeatureRequestProjectPermissions.MyPermission1, L("Permission:MyPermission1"));
+        var myGroup = context.AddGroup(FeatureRequestProjectPermissions.GroupName, L("Permission:FeatureRequestProject"));
+        var featureRequestsPermission = myGroup.AddPermission(FeatureRequestProjectPermissions.FeatureRequests.Default, L("Permission:FeatureRequests"));
+
+        featureRequestsPermission.AddChild(FeatureRequestProjectPermissions.FeatureRequests.Create, L("Permission:Create"));
+        featureRequestsPermission.AddChild(FeatureRequestProjectPermissions.FeatureRequests.Edit, L("Permission:Edit"));
+        featureRequestsPermission.AddChild(FeatureRequestProjectPermissions.FeatureRequests.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

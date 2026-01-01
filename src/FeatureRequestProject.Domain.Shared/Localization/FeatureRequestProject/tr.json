@@ -1,9 +1,38 @@
 {
   "culture": "tr",
-  "texts": {
-    "AppName": "FeatureRequestProject",
-    "Menu:Home": "Ana sayfa",
-    "Welcome": "Hoşgeldiniz",
-    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz."
-  }
+    "texts": {
+        "AppName": "FeatureRequestProject",
+        "Menu:Home": "Ana sayfa",
+        "Welcome": "Hoşgeldiniz",
+        "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
+        "WelcomeTitle": "Özellik Talep Sistemi",
+        "WelcomeSubtitle": "Uygulamamızı geliştirmemize yardımcı olun. Fikirlerinizi paylaşın, diğer kullanıcıların taleplerini oylayın ve geliştirme sürecini takip edin.",
+        "Login": "Giriş Yap",
+        "WelcomeUser": "Hoşgeldin, {0}!",
+        "SeeRequests": "Talepleri İncele",
+        "CardCreateTitle": "Talep Oluştur",
+        "CardCreateDesc": "Aklına gelen yeni özellikleri veya iyileştirmeleri bizimle paylaş. Her fikir bizim için değerlidir.",
+        "CardVoteTitle": "Oyla ve Destekle",
+        "CardVoteDesc": "Diğer kullanıcıların oluşturduğu talepleri incele ve beğendiklerine oy vererek öne çıkmasını sağla.",
+        "CardTrackTitle": "Durumu Takip Et",
+        "CardTrackDesc": "Taleplerin durumunu takip et. Hangi özellikler geliştiriliyor, hangileri tamamlandı anında gör.",
+        "FooterRights": "{0} Feature Request App. Tüm hakları saklıdır.",
+        "WriteACommentPlaceholder": "Yorumunuzu buraya yazın...",
+        "LoginToCommentMessage": "Yorum yapabilmek için lütfen <a href='{0}' class='alert-link'>giriş yapın</a>.",
+
+        "Enum:Status.0": "Taslak",
+        "Enum:Status.1": "Askıda",
+        "Enum:Status.2": "Onaylandı",
+        "Enum:Status.3": "Planlandı",
+        "Enum:Status.4": "Tamamlandı",
+        "Enum:Status.5": "Reddedildi",
+
+        "Enum:Category.0": "Arayüz (UI)",
+        "Enum:Category.1": "Performans",
+        "Enum:Category.2": "Güvenlik",
+        "Enum:Category.3": "İntegrasyon",
+        "Enum:Category.4": "Dokümentasyon",
+
+        "WriteAComment":  "Yorum Yaz"
+    }
 }

@@ -34,13 +34,10 @@ public partial class FeatureRequestProjectApplicationMappers :
             source.CategoryId
             );
 
-        entity.Status = source.Status;
-
         return entity;
     }
     public void Map(CreateUpdateFeatureRequestDto source, FeatureRequest destination) 
     {
-        destination.Status = source.Status;
         destination.Title = source.Title;
         destination.Description = source.Description;
         destination.CategoryId = source.CategoryId;

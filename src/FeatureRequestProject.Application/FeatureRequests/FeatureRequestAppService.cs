@@ -1,4 +1,5 @@
 ﻿using FeatureRequestProject.FeatureRequestVotes;
+using FeatureRequestProject.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -29,6 +30,22 @@ namespace FeatureRequestProject.FeatureRequests
             : base(repository) 
         {
             _userRepository = userRepository;
+
+            UpdatePolicyName = FeatureRequestProjectPermissions.FeatureRequests.Edit;
+            DeletePolicyName = FeatureRequestProjectPermissions.FeatureRequests.Delete;
+        }
+
+        [Authorize]
+        public override async Task<FeatureRequestDto> CreateAsync(CreateUpdateFeatureRequestDto input)
+        {
+            var featureRequest = ObjectMapper.Map<CreateUpdateFeatureRequestDto, FeatureRequest>(input);
+
+            featureRequest.Status = Status.Pending;
+            featureRequest.VoteCount = 0;
+
+            await Repository.InsertAsync(featureRequest);
+
+            return ObjectMapper.Map<FeatureRequest, FeatureRequestDto>(featureRequest);
         }
 
         [Authorize]

@@ -28,12 +28,14 @@
                             [
                                 {
                                     text: l('Edit'),
+                                    visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Edit'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }
                                 },
                                 {
                                     text: l('Delete'),
+                                    visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Delete'),
                                     confirmMessage: function (data) {
                                         return l('FeatureRequestDeletionConfirmationMessage', data.record.title);
                                     },
