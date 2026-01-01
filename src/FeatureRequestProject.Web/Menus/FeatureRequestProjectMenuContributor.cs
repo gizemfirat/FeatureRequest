@@ -34,6 +34,20 @@ public class FeatureRequestProjectMenuContributor : IMenuContributor
             )
         );
 
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                "FeaturesRequest",
+                l["Menu:FeatureRequest"],
+                icon: "fa fa-lightbulb"
+            ).AddItem(
+                new ApplicationMenuItem(
+                    "FeaturesRequest.FeatureRequests",
+                    l["Menu:FeatureRequests"],
+                    url: "/FeatureRequests"
+                )
+            )
+        );
+
         if (MultiTenancyConsts.IsEnabled)
         {
             administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);

@@ -1,10 +1,16 @@
+using FeatureRequestProject.FeatureRequests;
 using Riok.Mapperly.Abstractions;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Mapperly;
 
 namespace FeatureRequestProject.Web;
 
 [Mapper]
-public partial class FeatureRequestProjectWebMappers
+[MapExtraProperties]
+public partial class FeatureRequestProjectWebMappers : MapperBase<FeatureRequestDto, CreateUpdateFeatureRequestDto>, ITransientDependency
+
 {
-    //Define your Mapperly configuration here for the Web project.
+    public override partial CreateUpdateFeatureRequestDto Map(FeatureRequestDto source);
+    public override partial void Map(FeatureRequestDto source, CreateUpdateFeatureRequestDto destination);
 }
+

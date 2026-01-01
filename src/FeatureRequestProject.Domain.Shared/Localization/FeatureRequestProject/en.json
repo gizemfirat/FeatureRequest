@@ -1,9 +1,31 @@
 {
   "culture": "en",
-  "texts": {
-    "AppName": "FeatureRequestProject",
-    "Menu:Home": "Home",
-    "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
-  }
+    "texts": {
+        "AppName": "FeatureRequestProject",
+        "Menu:Home": "Home",
+        "Welcome": "Welcome",
+        "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+        "Menu:FeatureRequest": "Feature Request",
+        "Menu:FeatureRequests": "All Feature Requests",
+        "Actions": "Actions",
+        "Close": "Close",
+        "Delete": "Delete",
+        "Edit": "Edit",
+        "Title": "Title",
+        "Description": "Description",
+        "Enum:Category.0": "UI",
+        "Enum:Category.1": "Performance",
+        "Enum:Category.2": "Security",
+        "Enum:Category.3": "Integration",
+        "Enum:Category.4": "Documentation",
+        "Enum:Status.0": "Draft",
+        "Enum:Status.1": "Pending",
+        "Enum:Status.2": "Approved",
+        "Enum:Status.3": "Planned",
+        "Enum:Status.4": "Completed",
+        "Enum:Status.5": "Rejected",
+        "FeatureReguesrDeleteConfirmationMessage": "Are you sure you want to delete this feature request?",
+        "FeatureRequestNotFoundMessage": "Feature request not found.",
+        "SuccessfullyDeleted": "Successfully deleted!"
+    }
 }
