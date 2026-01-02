@@ -1,5 +1,5 @@
 {
-  "culture": "en",
+    "culture": "en",
     "texts": {
         "AppName": "FeatureRequestProject",
         "Menu:Home": "Home",
@@ -24,10 +24,10 @@
         "Enum:Status.3": "Planned",
         "Enum:Status.4": "Completed",
         "Enum:Status.5": "Rejected",
-        "FeatureReguesrDeleteConfirmationMessage": "Are you sure you want to delete this feature request?",
+        "FeatureRequestDeleteConfirmationMessage": "Are you sure you want to delete this feature request?",
         "FeatureRequestNotFoundMessage": "Feature request not found.",
         "SuccessfullyDeleted": "Successfully deleted!",
-        "DidYouFindThisHelpful": "Did you find this helpfull?",
+        "DidYouFindThisHelpful": "Did you find this helpful?",
         "CommentsComingSoon": "Comments coming soon...",
         "WelcomeTitle": "Feature Request System",
         "WelcomeSubtitle": "Help us improve our application. Share your ideas, vote on requests from other users, and follow the development process.",
@@ -45,7 +45,10 @@
         "NoCommentsYet": "No comments yet. Be the first to comment!",
         "Send": "Send",
         "WriteACommentPlaceholder": "Write your comment here...",
-        "LoginToCommentMessage": "Please <a href='{0}' class='alert-link'>login</a> to post a comment.",
-        "WriteAComment":  "Write a Comment"
+        "LoginToCommentMessage": "Please login to post a comment.",
+        "WriteAComment": "Write a Comment",
+        "FeatureRequestProject": "FRS",
+        "CommentSaved": "Comment Saved.",
+        "FeatureRequestDeletionConfirmationMessage": "Are you sure you want to delete this feature request?"
     }
 }

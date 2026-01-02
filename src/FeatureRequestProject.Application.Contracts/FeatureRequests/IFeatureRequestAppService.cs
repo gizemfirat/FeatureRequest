@@ -11,7 +11,7 @@ namespace FeatureRequestProject.FeatureRequests
     public interface IFeatureRequestAppService : ICrudAppService<
             FeatureRequestDto,
             Guid,
-            PagedAndSortedResultRequestDto,
+            GetFeatureRequestListDto,
             CreateUpdateFeatureRequestDto>
     {
         Task VoteAsync(Guid id, VoteType type);

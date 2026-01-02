@@ -4,6 +4,15 @@
     var editModal = new abp.ModalManager(abp.appPath + 'FeatureRequests/EditModal');
     var viewModal = new abp.ModalManager(abp.appPath + 'FeatureRequests/ViewModal');
 
+    var selectedCategoryFilter = null;
+
+    var getFilter = function () {
+        return {
+            filter: '',
+            category: selectedCategoryFilter
+        };
+    };
+
     var dataTable = $('#FeatureRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
@@ -11,7 +20,9 @@
             order: [[1, 'asc']],
             searching: false,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(featureRequestProject.featureRequests.featureRequest.getList),
+            ajax: abp.libs.datatables.createAjax(
+                featureRequestProject.featureRequests.featureRequest.getList,
+                getFilter),
             columnDefs: [
                 {
                     title: "",
@@ -66,6 +77,7 @@
                 {
                     title: l('Category'),
                     data: "categoryId",
+                    width: "15%",
                     render: function (data) {
                         return l('Enum:Category.' + data);
                     }
@@ -77,8 +89,39 @@
                         return l('Enum:Status.' + data);
                     }
                 }
-                //TODO : Add more columns if needed
-            ]
+            ],
+            initComplete: function () {
+                var api = this.api();
+
+                var column = api.column(5);
+                var header = $(column.header());
+                var title = header.text();
+
+                header.empty().append(`
+                    <select id="headerCategorySelect" class="form-select form-select-sm shadow-none border-0" 
+                        style="font-weight: 600; font-size: 0.75rem; color: #6c757d; text-transform: uppercase; background-color: transparent; padding-left: 0; cursor: pointer;">
+                        <option value="" style="color:black;">${l('Category')}</option>
+                    </select>
+                `);
+
+                var select = header.find('select');
+
+                if (typeof categoryListFromServer !== 'undefined') {
+                    categoryListFromServer.forEach(function (cat) {
+                        select.append(`<option value="${cat.id}">${cat.name}</option>`);
+                    });
+                }
+
+                select.on('change', function () {
+                    var val = $(this).val();
+                    selectedCategoryFilter = val === "" ? null : parseInt(val);
+                    dataTable.ajax.reload();
+                });
+
+                select.on('click', function (e) {
+                    e.stopPropagation();
+                });
+            }
         })
     );
 
@@ -107,13 +150,14 @@
         featureRequestProject.featureRequests.featureRequest.vote(id, type)
             .then(function () {
                 abp.notify.success(l('VoteSaved'));
-                dataTable.ajax.reload(); 
-                viewModal.close(); 
+                dataTable.ajax.reload();
+                viewModal.close();
             });
     });
 
     $(document).on('click', '#btn-send-comment', function (e) {
-        var id = $(this).data('id');
+        var $btn = $(this);
+        var id = $btn.data('id');
         var content = $('#NewCommentContent').val();
 
         if (!content) {

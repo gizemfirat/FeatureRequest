@@ -19,7 +19,7 @@ namespace FeatureRequestProject.FeatureRequests
             FeatureRequest,
             FeatureRequestDto,
             Guid,
-            PagedAndSortedResultRequestDto,
+            GetFeatureRequestListDto,
             CreateUpdateFeatureRequestDto>,
         IFeatureRequestAppService
     {
@@ -111,9 +111,15 @@ namespace FeatureRequestProject.FeatureRequests
             return dto;
         }
 
-        protected override async Task<IQueryable<FeatureRequest>> CreateFilteredQueryAsync(PagedAndSortedResultRequestDto input)
+        protected override async Task<IQueryable<FeatureRequest>> CreateFilteredQueryAsync(GetFeatureRequestListDto input)
         {
-            return (await base.CreateFilteredQueryAsync(input))
+            var query = await base.CreateFilteredQueryAsync(input);
+
+            query = query
+                .WhereIf(input.Category.HasValue, x => x.CategoryId == input.Category)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), x => x.Title.Contains(input.Filter));
+
+            return query
                 .Include(x => x.Comments)
                 .Include(x => x.Votes);
         }

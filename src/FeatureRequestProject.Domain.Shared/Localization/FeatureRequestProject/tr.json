@@ -18,10 +18,16 @@
         "CardTrackDesc": "Taleplerin durumunu takip et. Hangi özellikler geliştiriliyor, hangileri tamamlandı anında gör.",
         "FooterRights": "{0} Feature Request App. Tüm hakları saklıdır.",
         "WriteACommentPlaceholder": "Yorumunuzu buraya yazın...",
-        "LoginToCommentMessage": "Yorum yapabilmek için lütfen <a href='{0}' class='alert-link'>giriş yapın</a>.",
+        "LoginToCommentMessage": "Yorum yapabilmek için lütfen giriş yapın</a>.",
+        "Description": "Açıklama",
+        "Comments": "Yorumlar",
+        "DidYouFindThisHelpful": "Bu öneriyi faydalı buldunuz mu?",
+        "Send": "Gönder",
+        "NoCommentsYet": "Henüz yorum yapılmamış. İlk yorumu sen yap!",
+        "CommentSaved": "Yorum kaydedildi.",
 
         "Enum:Status.0": "Taslak",
-        "Enum:Status.1": "Askıda",
+        "Enum:Status.1": "Beklemede",
         "Enum:Status.2": "Onaylandı",
         "Enum:Status.3": "Planlandı",
         "Enum:Status.4": "Tamamlandı",
@@ -30,9 +36,11 @@
         "Enum:Category.0": "Arayüz (UI)",
         "Enum:Category.1": "Performans",
         "Enum:Category.2": "Güvenlik",
-        "Enum:Category.3": "İntegrasyon",
+        "Enum:Category.3": "Entegrasyon",
         "Enum:Category.4": "Dokümentasyon",
 
-        "WriteAComment":  "Yorum Yaz"
+        "WriteAComment": "Yorum Yaz",
+        "FeatureRequestProject": "FRS",
+        "FeatureRequestDeletionConfirmationMessage": "Bu özellik talebini silmek istediğinize emin misiniz?"
     }
 }

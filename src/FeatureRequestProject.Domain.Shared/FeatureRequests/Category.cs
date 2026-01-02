@@ -7,7 +7,7 @@ namespace FeatureRequestProject.FeatureRequests
     public enum Category
     {
         UI,
-        Peroformance,
+        Performance,
         Security,
         Integration,
         Documentation
