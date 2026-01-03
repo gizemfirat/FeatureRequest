@@ -11,16 +11,23 @@
 @inject IStringLocalizer<FeatureRequestProjectResource> L
 @inject IAuthorizationService AuthorizationService
 @inject ICurrentUser CurrentUser
+
+@section styles {
+	<abp-style src="/Pages/FeatureRequests/Index.css" />
+}
+
 @section scripts {
-
 	<script>
-
 		var categoryListFromServer = @Html.Raw(
-			JsonSerializer.Serialize(
-				Html.GetEnumSelectList<Category>().Select(c => new { id = c.Value, name = c.Text })
-			)
-	    );
-	</script>
+					JsonSerializer.Serialize(
+							Html.GetEnumSelectList<Category>().Select(c => new { id = c.Value, name = c.Text })
+					)
+			);
+
+	var statusListFromServer = @Html.Raw(JsonSerializer.Serialize(Model.StatusList));
+</script>
+
+	<abp-script src="/Pages/FeatureRequests/FeatureRequestCommon.js" />
 
 	<abp-script src="/Pages/FeatureRequests/Index.js" />
 }

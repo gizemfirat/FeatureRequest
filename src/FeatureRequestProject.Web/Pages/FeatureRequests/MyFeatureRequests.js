@@ -4,14 +4,13 @@
     var editModal = new abp.ModalManager(abp.appPath + 'FeatureRequests/EditModal');
     var viewModal = new abp.ModalManager(abp.appPath + 'FeatureRequests/ViewModal');
 
-    var selectedCategoryFilter = null;
+    var catList = typeof categoryListFromServer !== 'undefined' ? categoryListFromServer : [];
+    var statList = typeof statusListFromServer !== 'undefined' ? statusListFromServer : [];
 
-    var getFilter = function () {
-        return {
-            filter: '',
-            category: selectedCategoryFilter,
-            isMyRequests: true
-        };
+    var filters = {
+        category: null,
+        status: null,
+        isMyRequests: true
     };
 
     var dataTable = $('#MyFeatureRequestsTable').DataTable(
@@ -23,7 +22,7 @@
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(
                 featureRequestProject.featureRequests.featureRequest.getList,
-                getFilter
+                function () { return filters; }
             ),
             columnDefs: [
                 {
@@ -65,57 +64,16 @@
                 { title: l('Title'), data: "title" },
                 { title: l('Votes'), data: "voteCount" },
                 { title: l('Description'), data: "description" },
-                {
-                    title: l('Category'),
-                    data: "categoryId",
-                    width: "150px",
-                    render: function (data) {
-                        return l('Enum:Category.' + data);
-                    }
-                },
-                {
-                    title: l('Status'),
-                    data: "status",
-                    render: function (data) {
-                        return l('Enum:Status.' + data);
-                    }
-                }
-            ],
-            initComplete: function () {
-                var api = this.api();
-                var column = api.column(5);
-                var header = $(column.header());
-
-                header.empty().append(`
-                    <select id="headerCategorySelect" class="form-select form-select-sm shadow-none border-0 p-0" 
-                        style="font-weight: 600; font-size: 0.75rem; color: #878a99; text-transform: uppercase; background-color: transparent; cursor: pointer; line-height: 1.5;">
-                        <option value="" style="color: black;">${l('Category')}</option>
-                    </select>
-                `);
-
-                var select = header.find('select');
-
-                if (typeof categoryListFromServer !== 'undefined') {
-                    categoryListFromServer.forEach(function (cat) {
-                        select.append(`<option value="${cat.id}" style="color: black;">${cat.name}</option>`);
-                    });
-                }
-
-                select.on('change', function () {
-                    var val = $(this).val();
-                    selectedCategoryFilter = val === "" ? null : parseInt(val);
-                    if (selectedCategoryFilter !== null) {
-                        $(this).css('color', 'var(--bs-primary)');
-                    } else {
-                        $(this).css('color', '#878a99');
-                    }
+                FeatureRequestCommon.createFilterColumn(l, 'Category', 'categoryId', catList, function (selectedVal) {
+                    filters.category = selectedVal;
                     dataTable.ajax.reload();
-                });
+                }),
 
-                select.on('click', function (e) {
-                    e.stopPropagation();
-                });
-            }
+                FeatureRequestCommon.createFilterColumn(l, 'Status', 'status', statList, function (selectedVal) {
+                    filters.status = selectedVal;
+                    dataTable.ajax.reload();
+                })
+            ],
         })
     );
 

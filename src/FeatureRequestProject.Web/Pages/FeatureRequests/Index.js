@@ -4,14 +4,10 @@
     var editModal = new abp.ModalManager(abp.appPath + 'FeatureRequests/EditModal');
     var viewModal = new abp.ModalManager(abp.appPath + 'FeatureRequests/ViewModal');
 
-    var selectedCategoryFilter = null;
+    var filters = { category: null, status: null };
 
-    var getFilter = function () {
-        return {
-            filter: '',
-            category: selectedCategoryFilter
-        };
-    };
+    var catList = typeof categoryListFromServer !== 'undefined' ? categoryListFromServer : [];
+    var statList = typeof statusListFromServer !== 'undefined' ? statusListFromServer : [];
 
     var dataTable = $('#FeatureRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -22,7 +18,8 @@
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(
                 featureRequestProject.featureRequests.featureRequest.getList,
-                getFilter),
+                function () { return filters; }
+            ),
             columnDefs: [
                 {
                     title: "",
@@ -36,31 +33,30 @@
                     title: l('Actions'),
                     visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Edit') || abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Delete'),
                     rowAction: {
-                        items:
-                            [
-                                {
-                                    text: l('Edit'),
-                                    visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Edit'),
-                                    action: function (data) {
-                                        editModal.open({ id: data.record.id });
-                                    }
-                                },
-                                {
-                                    text: l('Delete'),
-                                    visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Delete'),
-                                    confirmMessage: function (data) {
-                                        return l('FeatureRequestDeletionConfirmationMessage', data.record.title);
-                                    },
-                                    action: function (data) {
-                                        featureRequestProject.featureRequests.featureRequest
-                                            .delete(data.record.id)
-                                            .then(function () {
-                                                abp.notify.info(l('SuccessfullyDeleted'));
-                                                dataTable.ajax.reload();
-                                            });
-                                    }
+                        items: [
+                            {
+                                text: l('Edit'),
+                                visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Edit'),
+                                action: function (data) {
+                                    editModal.open({ id: data.record.id });
                                 }
-                            ]
+                            },
+                            {
+                                text: l('Delete'),
+                                visible: abp.auth.isGranted('FeatureRequestProject.FeatureRequests.Delete'),
+                                confirmMessage: function (data) {
+                                    return l('FeatureRequestDeletionConfirmationMessage', data.record.title);
+                                },
+                                action: function (data) {
+                                    featureRequestProject.featureRequests.featureRequest
+                                        .delete(data.record.id)
+                                        .then(function () {
+                                            abp.notify.info(l('SuccessfullyDeleted'));
+                                            dataTable.ajax.reload();
+                                        });
+                                }
+                            }
+                        ]
                     }
                 },
                 {
@@ -83,54 +79,16 @@
                     title: l('Description'),
                     data: "description"
                 },
-                {
-                    title: l('Category'),
-                    data: "categoryId",
-                    width: "15%",
-                    render: function (data) {
-                        return l('Enum:Category.' + data);
-                    }
-                },
-                {
-                    title: l('Status'),
-                    data: "status",
-                    render: function (data) {
-                        return l('Enum:Status.' + data);
-                    }
-                }
-            ],
-            initComplete: function () {
-                var api = this.api();
 
-                var column = api.column(5);
-                var header = $(column.header());
-                var title = header.text();
-
-                header.empty().append(`
-                    <select id="headerCategorySelect" class="form-select form-select-sm shadow-none border-0" 
-                        style="font-weight: 600; font-size: 0.75rem; color: #6c757d; text-transform: uppercase; background-color: transparent; padding-left: 0; cursor: pointer;">
-                        <option value="" style="color:black;">${l('Category')}</option>
-                    </select>
-                `);
-
-                var select = header.find('select');
-
-                if (typeof categoryListFromServer !== 'undefined') {
-                    categoryListFromServer.forEach(function (cat) {
-                        select.append(`<option value="${cat.id}">${cat.name}</option>`);
-                    });
-                }
-
-                select.on('change', function () {
-                    var val = $(this).val();
-                    selectedCategoryFilter = val === "" ? null : parseInt(val);
+                FeatureRequestCommon.createFilterColumn(l, 'Category', 'categoryId', catList, function (selectedVal) {
+                    filters.category = selectedVal;
                     dataTable.ajax.reload();
-                });
-
-                select.on('click', function (e) {
-                    e.stopPropagation();
-                });
-            }
+                }),
+                FeatureRequestCommon.createFilterColumn(l, 'Status', 'status', statList, function (selectedVal) {
+                    filters.status = selectedVal;
+                    dataTable.ajax.reload();
+                })
+            ]
         })
     );
 

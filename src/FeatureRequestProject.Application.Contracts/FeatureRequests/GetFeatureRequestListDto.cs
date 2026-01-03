@@ -10,5 +10,6 @@ namespace FeatureRequestProject.FeatureRequests
         public Category? Category { get; set; }
         public string? Filter { get; set; }
         public bool? IsMyRequests { get; set; }
+        public Status? Status { get; set; }
     }
 }

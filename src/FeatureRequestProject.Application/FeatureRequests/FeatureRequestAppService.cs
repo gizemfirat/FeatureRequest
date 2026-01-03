@@ -161,6 +161,7 @@ namespace FeatureRequestProject.FeatureRequests
 
             query = query
                 .WhereIf(input.Category.HasValue, x => x.CategoryId == input.Category)
+                .WhereIf(input.Status.HasValue, x => x.Status == input.Status)
                 .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), x => x.Title.Contains(input.Filter));
 
             if (input.IsMyRequests == true && CurrentUser.Id.HasValue)
