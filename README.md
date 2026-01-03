@@ -28,6 +28,8 @@ Anasayfada, sayfanın amaçlarına dair bilgiler edinilerek giriş yapmak için 
 
 ![Ana Sayfa](images/main-menu.png)
 
+![Ana Sayfa-Özellikler](images/main-menu2.png)
+
 Yandaki menüden Talepler kısmına girildiğinde ise filtreleme seçeneği bulunan, bütün talepleri görebileceğiniz bir tablo bulunmaktadır. (Bu tabloyu görüntüleyebilmeniz için giriş yapmanıza gerek yoktur.)
 
 ![Talepler Sayfası](images/all-features.png)
@@ -35,7 +37,7 @@ Yandaki menüden Talepler kısmına girildiğinde ise filtreleme seçeneği bulu
 ### 2. Yeni Talep Oluşturma
 Talepler listesinin üzerinde bulunan yeni talep oluşturma butonuna tıklayarak yeni talep oluşturma modal yapısına ulaşabilir ve yeni talebinizi oluşturabilirsiniz. (Bu işlem için giriş yapmanız gerekmektedir.)
 
-![Talep Oluşturma](images/create-feature.png)
+![Talep Oluşturma](images/add-feature.png)
 
 ### 3. Talepleri Görüntüleme
 Bütün kullanıcılardan gelen talepleri görüntüleyebildiğiniz gibi kendi taleplerinizi de 'Taleplerim' menüsü üzerinden görüntüleyebilirsiniz. Burada, sadece kendi taleplerinizle sınırlı olmak üzere, taleplerini güncelleyebilir veya silebilirsiniz.

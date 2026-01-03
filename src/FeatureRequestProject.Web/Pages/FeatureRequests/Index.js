@@ -132,11 +132,26 @@
             return;
         }
 
+        $btn.prop('disabled', true);
+
         featureRequestProject.featureRequests.featureRequest.createComment(id, content)
             .then(function () {
                 abp.notify.success(l('CommentSaved'));
-                $('#NewCommentContent').val('');
-                viewModal.open({ id: id });
+                var url = abp.appPath + 'FeatureRequests/ViewModal?id=' + id;
+
+                $.get(url, function (response) {
+                    var $responseHtml = $(response);
+                    var newCommentsHtml = $responseHtml.find('#comments-section').html();
+                    $('#comments-section').html(newCommentsHtml);
+
+                    $('#NewCommentContent').val('');
+                }).always(function () {
+                    $btn.prop('disabled', false);
+                });
+
+            })
+            .catch(function (err) {
+                $btn.prop('disabled', false);
             });
     });
 });
