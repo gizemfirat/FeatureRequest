@@ -7,6 +7,8 @@ using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
+using FeatureRequestProject.Authorization;
 
 namespace FeatureRequestProject;
 
@@ -25,5 +27,6 @@ public class FeatureRequestProjectApplicationModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddMapperlyObjectMapper<FeatureRequestProjectApplicationModule>();
+        context.Services.AddSingleton<IAuthorizationHandler, FeatureRequestOwnerAuthorizationHandler>();
     }
 }

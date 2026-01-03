@@ -1,21 +1,38 @@
 ﻿@page
 @using FeatureRequestProject.Localization
+@using FeatureRequestProject.Permissions
 @using FeatureRequestProject.Web.Pages.FeatureRequests
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
 @model EditModalModel
+@inject IAuthorizationService AuthorizationService
 @inject IStringLocalizer<FeatureRequestProjectResource> L
 @{
 	Layout = null;
+    var canChangeStatus = await AuthorizationService.IsGrantedAsync(FeatureRequestProjectPermissions.FeatureRequests.Edit);
 }
 
-<abp-dynamic-form abp-model="FeatureRequest" asp-page="/FeatureRequests/EditModal">
+<form asp-page="/FeatureRequests/EditModal">
     <abp-modal>
         <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="Id" />
-            <abp-form-content />
+
+            <abp-input label="@L["Title"]" asp-for="FeatureRequest.Title" />
+            <abp-input label="@L["Description"]"  asp-for="FeatureRequest.Description" />
+            <abp-select label="@L["Category"]" asp-for="FeatureRequest.CategoryId" />
+
+            @if (canChangeStatus)
+            {
+                <abp-select label="@L["Status"]" asp-for="FeatureRequest.Status" label="@L["Status"].Value" />
+            }
+            else
+            {
+                <input type="hidden" asp-for="FeatureRequest.Status" />
+            }
         </abp-modal-body>
+
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
-</abp-dynamic-form>
+</form>

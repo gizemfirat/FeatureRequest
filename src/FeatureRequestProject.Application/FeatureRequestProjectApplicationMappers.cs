@@ -9,7 +9,6 @@ namespace FeatureRequestProject;
 
 [Mapper]
 [MapExtraProperties]
-
 public partial class FeatureRequestProjectApplicationMappers : 
     MapperBase<FeatureRequest, FeatureRequestDto>,
     IAbpMapperlyMapper<CreateUpdateFeatureRequestDto, FeatureRequest>,
@@ -41,6 +40,7 @@ public partial class FeatureRequestProjectApplicationMappers :
         destination.Title = source.Title;
         destination.Description = source.Description;
         destination.CategoryId = source.CategoryId;
+        destination.Status = source.Status;
     }
 
     public partial FeatureRequestCommentDto Map(FeatureRequestComment source);

@@ -14,5 +14,6 @@ namespace FeatureRequestProject.FeatureRequests
         public string Description { get; set; }
         [Required]
         public Category CategoryId { get; set; }
+        public Status Status { get; set; }
     }
 }

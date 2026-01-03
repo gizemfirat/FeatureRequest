@@ -49,6 +49,8 @@
         "WriteAComment": "Write a Comment",
         "FeatureRequestProject": "FRS",
         "CommentSaved": "Comment Saved.",
-        "FeatureRequestDeletionConfirmationMessage": "Are you sure you want to delete this feature request?"
+        "MyFeatureRequests": "My Requests",
+        "FeatureRequestDeletionConfirmationMessage": "Are you sure you want to delete this feature request?",
+        "Creator": "Creator"
     }
 }

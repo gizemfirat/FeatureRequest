@@ -39,8 +39,10 @@
         "Enum:Category.3": "Entegrasyon",
         "Enum:Category.4": "Dokümentasyon",
 
+        "MyFeatureRequests": "Taleplerim",
         "WriteAComment": "Yorum Yaz",
         "FeatureRequestProject": "FRS",
-        "FeatureRequestDeletionConfirmationMessage": "Bu özellik talebini silmek istediğinize emin misiniz?"
+        "FeatureRequestDeletionConfirmationMessage": "Bu özellik talebini silmek istediğinize emin misiniz?",
+        "Creator": "Yazar"
     }
 }

@@ -109,7 +109,7 @@ public class FeatureRequestProjectWebModule : AbpModule
         Configure<RazorPagesOptions>(options =>
         {
             options.Conventions.AuthorizePage("/FeatureRequests/CreateModal");
-            options.Conventions.AuthorizePage("/FeatureRequests/EditModal", FeatureRequestProjectPermissions.FeatureRequests.Edit);
+            options.Conventions.AuthorizePage("/FeatureRequests/EditModal");
 
         });
 

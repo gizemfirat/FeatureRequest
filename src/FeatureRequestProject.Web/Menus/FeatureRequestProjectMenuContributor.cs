@@ -1,10 +1,15 @@
-﻿using System.Threading.Tasks;
-using FeatureRequestProject.Localization;
+﻿using FeatureRequestProject.Localization;
 using FeatureRequestProject.MultiTenancy;
+using FeatureRequestProject.Permissions;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
+using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.Users;
 
 namespace FeatureRequestProject.Web.Menus;
 
@@ -22,6 +27,8 @@ public class FeatureRequestProjectMenuContributor : IMenuContributor
     {
         var administration = context.Menu.GetAdministration();
         var l = context.GetLocalizer<FeatureRequestProjectResource>();
+
+        var currentUser = context.ServiceProvider.GetRequiredService<ICurrentUser>();
 
         context.Menu.Items.Insert(
             0,
@@ -47,6 +54,18 @@ public class FeatureRequestProjectMenuContributor : IMenuContributor
                 )
             )
         );
+
+        if (currentUser.IsAuthenticated)
+        {
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                    "FeatureRequestProject.MyRequests",
+                    l["MyFeatureRequests"],
+                    url: "/FeatureRequests/MyFeatureRequests",
+                    icon: "fa fa-user"
+                )
+            );
+        }
 
         if (MultiTenancyConsts.IsEnabled)
         {

@@ -6,15 +6,21 @@
 @model CreateModalModel
 @inject IStringLocalizer<FeatureRequestProjectResource> L
 @{
-	Layout = null;
+    Layout = null;
 }
 
-<abp-dynamic-form abp-model="FeatureRequest" asp-page="/FeatureRequests/CreateModal">
+<form asp-page="/FeatureRequests/CreateModal">
     <abp-modal>
         <abp-modal-header title="@L["NewFeatureRequest"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-form-content />
+
+            <abp-input label="@L["Title"]" asp-for="FeatureRequest.Title" />
+
+            <abp-input label="@L["Description"]" asp-for="FeatureRequest.Description" />
+
+            <abp-select label="@L["Category"]" asp-for="FeatureRequest.CategoryId" />
+
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
-</abp-dynamic-form>
+</form>
