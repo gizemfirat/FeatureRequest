@@ -25,21 +25,26 @@ Bu proje, **Domain Driven Design (DDD)** prensipleri, **SOLID** kuralları ve **
 
 ### 1. Ana Sayfa ve Talepler Listesi
 Anasayfada, sayfanın amaçlarına dair bilgiler edinilerek giriş yapmak için login sayfasına gidilebilir.
+
 ![Ana Sayfa](images/main-menu.png)
 
 Yandaki menüden Talepler kısmına girildiğinde ise filtreleme seçeneği bulunan, bütün talepleri görebileceğiniz bir tablo bulunmaktadır. (Bu tabloyu görüntüleyebilmeniz için giriş yapmanıza gerek yoktur.)
+
 ![Talepler Sayfası](images/all-features.png)
 
 ### 2. Yeni Talep Oluşturma
 Talepler listesinin üzerinde bulunan yeni talep oluşturma butonuna tıklayarak yeni talep oluşturma modal yapısına ulaşabilir ve yeni talebinizi oluşturabilirsiniz. (Bu işlem için giriş yapmanız gerekmektedir.)
+
 ![Talep Oluşturma](images/create-feature.png)
 
 ### 3. Talepleri Görüntüleme
-Bütün kullanıcılardan gelen talepleri görüntüleyebildiğiniz gibi kendi taleplerinizi de 'Taleplerim' menüsü üzerinden görüntüleyebilirsiniz. Burada, sadece kendi taleplerinizle sınırlı olmak üzere, taleplerini güncelleyebilir ve silebilirsiniz.
+Bütün kullanıcılardan gelen talepleri görüntüleyebildiğiniz gibi kendi taleplerinizi de 'Taleplerim' menüsü üzerinden görüntüleyebilirsiniz. Burada, sadece kendi taleplerinizle sınırlı olmak üzere, taleplerini güncelleyebilir veya silebilirsiniz.
+
 ![Taleplerim](images/my-features.png)
 
 ### 4. Talepleri Güncelleme
 Taleplerin detayların görüntülenebilir, taleplere oy atılabilir ve taleplere yorum yapılabilir.
+
 ![Detay Sayfası](images/edit-feature.png)
 
 ## Kullanılan Teknolojiler
@@ -62,14 +67,14 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
 
 ### Gereksinimler
 * [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-* [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (veya LocalDB)
+* [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads
 * [Node.js](https://nodejs.org/) (UI kütüphaneleri için)
 * ABP CLI: `dotnet tool install -g Volo.Abp.Cli`
 
 ### Adım 1: Projeyi Klonlayın
 
 ```bash
-git clone [https://github.com/kullaniciadin/FeatureRequestProject.git](https://github.com/kullaniciadin/FeatureRequestProject.git)
+git clone [https://github.com/gizemfirat/FeatureRequestProject.git](https://github.com/gizemfirat/FeatureRequestProject.git)
 cd FeatureRequestProject
 ```
 
@@ -95,7 +100,7 @@ Web projesi dizininde (`src/FeatureRequestProject.Web`) terminal açın ve şu k
 abp install-libs
 ```
 
-### Adım 5: Uygulamayı Başlatın
+### Adım 5: Uygulamayı Başlatma
 Proje artık hazır. Projeyi çalıştırabilirsiniz.
 
 ```bash
