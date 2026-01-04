@@ -192,7 +192,7 @@ namespace FeatureRequestProject.FeatureRequests
                 query = query.Where(x => x.CreatorId == CurrentUser.Id);
             }
 
-            return query; //.include kaldırdım.
+            return query;
         }
 
         public override async Task<FeatureRequestDto> UpdateAsync(Guid id, CreateUpdateFeatureRequestDto input)

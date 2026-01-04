@@ -5,7 +5,7 @@ using Volo.Abp.Domain.Entities.Auditing;
 
 namespace FeatureRequestProject.FeatureRequestVotes
 {
-    public class FeatureRequestVote : CreationAuditedAggregateRoot<Guid>
+    public class FeatureRequestVote : CreationAuditedEntity<Guid>
     {
         public VoteType Value { get; set; }
         public Guid FeatureRequestId { get; set; }
