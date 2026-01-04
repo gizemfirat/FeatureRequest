@@ -16,5 +16,8 @@ namespace FeatureRequestProject.FeatureRequests
         public Category CategoryId { get; set; }
         public List<FeatureRequestCommentDto> Comments { get; set; } = new();
         public int CurrentUserVote { get; set; }
+
+        public int UpVoteCount { get; set; }
+        public int DownVoteCount { get; set; }
     }
 }

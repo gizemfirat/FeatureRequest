@@ -64,22 +64,10 @@
                     data: "title"
                 },
                 {
-                    title: l('Creator'),
-                    data: "creatorUserName",
-                    render: function (data) {
-                        if (!data) return 'System';
-                        return '<span class="badge bg-secondary">' + data + '</span>';
-                    }
-                },
-                {
                     title: l('Votes'),
-                    data: "voteCount"
+                    data: "voteCount",
+                    className: "text-start dt-head-left"
                 },
-                {
-                    title: l('Description'),
-                    data: "description"
-                },
-
                 FeatureRequestCommon.createFilterColumn(l, 'Category', 'categoryId', catList, function (selectedVal) {
                     filters.category = selectedVal;
                     dataTable.ajax.reload();

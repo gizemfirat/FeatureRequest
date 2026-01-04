@@ -44,7 +44,7 @@ namespace FeatureRequestProject.FeatureRequests
         {
             Votes ??= new Collection<FeatureRequestVote>();
 
-            var existingVote = Votes.FirstOrDefault(v => v.UserId == userId);
+            var existingVote = Votes.FirstOrDefault(v => v.CreatorId == userId);
 
             if (existingVote != null)
             {
@@ -59,13 +59,13 @@ namespace FeatureRequestProject.FeatureRequests
             }
             else 
             {
-                Votes.Add(new FeatureRequestVote(guidGenerator.Create(), Id, userId, type));
+                Votes.Add(new FeatureRequestVote(guidGenerator.Create(), Id, type));
             }
 
-            VoteCount = Votes.Sum(v => (int)v.Value);
+            VoteCount = Votes.Count;
         }
 
-        public void AddComment(Guid userId, string content, IGuidGenerator guidGenerator) 
+        public void AddComment(string content, IGuidGenerator guidGenerator) 
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -73,7 +73,7 @@ namespace FeatureRequestProject.FeatureRequests
             }
 
             Comments ??= new Collection<FeatureRequestComment>();
-            Comments.Add(new FeatureRequestComment(guidGenerator.Create(), Id, userId, content));
+            Comments.Add(new FeatureRequestComment(guidGenerator.Create(), Id, content));
         }
     }
 }

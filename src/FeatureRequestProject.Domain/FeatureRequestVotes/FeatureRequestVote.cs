@@ -9,12 +9,10 @@ namespace FeatureRequestProject.FeatureRequestVotes
     {
         public VoteType Value { get; set; }
         public Guid FeatureRequestId { get; set; }
-        public Guid UserId { get; set; }
 
-        public FeatureRequestVote(Guid id, Guid featureRequestId,  Guid userId, VoteType value) : base(id)
+        public FeatureRequestVote(Guid id, Guid featureRequestId, VoteType value) : base(id)
         {
             FeatureRequestId = featureRequestId;
-            UserId = userId;
             Value = value;
         }
     }

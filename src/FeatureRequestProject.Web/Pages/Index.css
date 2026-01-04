@@ -1,14 +1,41 @@
-body {
-    
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 
-/* Getting-Started */
-.card-bg-image {
-    position: absolute;
-    width: 630px;
-    height: auto;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
+.transition-style {
+    transition: all 0.3s ease;
 }
-/* Getting-Started End */
+
+.bg-opacity-10 {
+    --bs-bg-opacity: 0.1;
+}
+
+.hover-primary:hover {
+    color: var(--bs-primary) !important;
+}
+
+.bg-decoration-icon {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    opacity: 0.1;
+    color: var(--bs-primary);
+    transform: rotate(15deg);
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}

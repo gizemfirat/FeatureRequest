@@ -3,6 +3,7 @@ using System;
 using FeatureRequestProject.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace FeatureRequestProject.Migrations
 {
     [DbContext(typeof(FeatureRequestProjectDbContext))]
-    partial class FeatureRequestProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260104090405_Removed_UserId_From_Vote_And_Comment")]
+    partial class Removed_UserId_From_Vote_And_Comment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

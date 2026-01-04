@@ -96,11 +96,14 @@ public class FeatureRequestProjectDbContext :
             fc.ToTable(FeatureRequestProjectConsts.DbTablePrefix + "FeatureRequestComments",
                 FeatureRequestProjectConsts.DbSchema);
             fc.ConfigureByConvention();
+
             fc.Property(c => c.Content).IsRequired();
-            fc.HasOne<FeatureRequest>().WithMany(fr => fr.Comments).HasForeignKey(c => c.FeatureRequestId)
-                .IsRequired().OnDelete(DeleteBehavior.Cascade);
-            fc.HasOne<IdentityUser>().WithMany().HasForeignKey(c => c.UserId)
-                .IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+            fc.HasOne<FeatureRequest>()
+              .WithMany(fr => fr.Comments)
+              .HasForeignKey(c => c.FeatureRequestId)
+              .IsRequired()
+              .OnDelete(DeleteBehavior.Cascade);
         });
 
         builder.Entity<FeatureRequestVote>(fv =>
@@ -108,7 +111,13 @@ public class FeatureRequestProjectDbContext :
             fv.ToTable(FeatureRequestProjectConsts.DbTablePrefix + "FeatureRequestVotes",
                 FeatureRequestProjectConsts.DbSchema);
             fv.ConfigureByConvention();
-            fv.HasIndex(v => new { v.FeatureRequestId, v.UserId }).IsUnique();
+
+            fv.HasOne<FeatureRequest>()
+              .WithMany(fr => fr.Votes)
+              .HasForeignKey(v => v.FeatureRequestId)
+              .IsRequired()
+              .OnDelete(DeleteBehavior.Cascade);
+            fv.HasIndex(v => new { v.FeatureRequestId, v.CreatorId }).IsUnique();
         });
 
         /* Configure your own tables/entities inside here */

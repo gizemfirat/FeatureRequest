@@ -62,8 +62,7 @@
                     }
                 },
                 { title: l('Title'), data: "title" },
-                { title: l('Votes'), data: "voteCount" },
-                { title: l('Description'), data: "description" },
+                { title: l('Votes'), data: "voteCount", className: "text-start dt-head-left" },
                 FeatureRequestCommon.createFilterColumn(l, 'Category', 'categoryId', catList, function (selectedVal) {
                     filters.category = selectedVal;
                     dataTable.ajax.reload();

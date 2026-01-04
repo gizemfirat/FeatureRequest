@@ -34,6 +34,9 @@ Yandaki menüden Talepler kısmına girildiğinde ise filtreleme seçeneği bulu
 
 ![Talepler Sayfası](images/all-features.png)
 
+Admin olarak giriş yapılmadığı takdirde, görüntülenen talepleri değiştirme izni bulunmamaktadır. Admin kullanıcıyla giriş yapıldığında, aynı tablo üzerinde talepler üzerinde güncelleme yapmanızı/talepleri silmenizi sağlayan bir mekanizma bulunur.
+![Talepler Sayfası/Admin](images/all-features-admin.png)
+
 ### 2. Yeni Talep Oluşturma
 Talepler listesinin üzerinde bulunan yeni talep oluşturma butonuna tıklayarak yeni talep oluşturma modal yapısına ulaşabilir ve yeni talebinizi oluşturabilirsiniz. (Bu işlem için giriş yapmanız gerekmektedir.)
 
@@ -44,10 +47,21 @@ Bütün kullanıcılardan gelen talepleri görüntüleyebildiğiniz gibi kendi t
 
 ![Taleplerim](images/my-features.png)
 
-### 4. Talepleri Güncelleme
-Taleplerin detayların görüntülenebilir, taleplere oy atılabilir ve taleplere yorum yapılabilir.
+### 4. Talepleri İnceleme
+Taleplerin detayların görüntülenebilir, taleplere oy atılabilir ve taleplere yorum yapılabilir. Bu işlemleri gerçekleştirebilmek için giriş yapmış olmanız gerekir.
 
-![Detay Sayfası](images/edit-feature.png)
+![Detay Sayfası/LoginYok](images/view-feature-withoutlogin.png)
+
+![Detay Sayfası/Login](images/view-feature.png)
+
+### 5. Talepleri Güncelleme
+Bütün talepleri güncelleme/silme yetkisi sadece admin kullanıcısında bulunmaktadır. Admin, bir talebin durumu da dahil olmak üzere birçok değerini güncelleyebilir veya talebi silebilir.
+
+![Güncelleme Sayfası-Admin](images/edit-feature-admin.png)
+
+Kullanıcılar sadece kendilerine ait olan talepleri güncelleyebilir veya silebilir. Başka talepler üzerinde herhangi bir yetkileri bulunmamaktadır. Ayrıca kullanıcılar, kendi talepleri bile olsa talebin oylarını ve durumunu değiştiremez.
+
+![Güncelleme Sayfası/Kullanıcı](images/edit-feature-user.png)
 
 ## Kullanılan Teknolojiler
 

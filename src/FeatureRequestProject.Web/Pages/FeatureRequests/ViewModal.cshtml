@@ -8,127 +8,138 @@
 @inject ICurrentUser CurrentUser
 @inject IStringLocalizer<FeatureRequestProjectResource> L
 @{
-	Layout = null;
+    Layout = null;
 }
 
-<link href="/css/ViewModal/ViewModal.css" rel="stylesheet" />
+<link href="../Pages/FeatureRequests/ViewModal/ViewModal.css" rel="stylesheet" />
 
 <abp-modal size="Large" centered="true">
-	<abp-modal-header title="@Model.FeatureRequest.Title"></abp-modal-header>
+    <abp-modal-header title="@Model.FeatureRequest.Title"></abp-modal-header>
 
-	<abp-modal-body>
-		<div class="modal-top-content">
-			<abp-card class="shadow-sm border-0 mb-3">
-				<abp-card-body>
-					<h6 class="text-primary fw-bold" style="color: var(--purple-color) !important;">@L["Description"]</h6>
-					<p class="text-muted mb-0 description-area" style="white-space: pre-wrap;">@Model.FeatureRequest.Description</p>
-				</abp-card-body>
-			</abp-card>
+    <abp-modal-body class="modal-body-custom-layout">
 
-			<div class="d-flex justify-content-between align-items-center mb-3">
-				<div>
-					<span class="custom-badge badge-cat-@Model.FeatureRequest.CategoryId.ToString().ToLower() me-2">
-						<i class="fa fa-tag me-2"></i> @L[$"Enum:Category.{(int)Model.FeatureRequest.CategoryId}"]
-					</span>
-					<span class="custom-badge badge-status-@Model.FeatureRequest.Status.ToString().ToLower()">
-						<i class="fa fa-info-circle me-2"></i> @L[$"Enum:Status.{(int)Model.FeatureRequest.Status}"]
-					</span>
-				</div>
-				<div class="text-end">
-					<span class="me-2 small text-muted">@L["DidYouFindThisHelpful"]</span>
-					<div class="btn-group">
-						<abp-button button-type="@(Model.FeatureRequest.CurrentUserVote == 1 ? Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Success : Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Outline_Success)"
-									size="Small"
-									icon="thumbs-up"
-									class="modal-vote-btn"
-									data-id="@Model.FeatureRequest.Id"
-									data-type="1" />
-						<abp-button button-type="@(Model.FeatureRequest.CurrentUserVote == -1 ? Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Danger : Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Outline_Danger)"
-									size="Small"
-									icon="thumbs-down"
-									class="modal-vote-btn"
-									data-id="@Model.FeatureRequest.Id"
-									data-type="-1" />
-					</div>
-				</div>
-			</div>
+        <div class="modal-top-content">
+            <abp-card class="shadow-sm border-0 mb-3">
+                <abp-card-body class="p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="text-brand-purple fw-bold mb-0">@L["Description"]</h6>
+                        <div class="author-info">
+                            <i class="fa fa-user-circle"></i>
+                            <span class="fw-bold ms-1">
+                                @(string.IsNullOrEmpty(Model.FeatureRequest.CreatorUserName) ? "Unknown" : Model.FeatureRequest.CreatorUserName)
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-secondary mb-0 description-area" style="white-space: pre-wrap; font-size: 0.95rem;">@Model.FeatureRequest.Description</p>
+                </abp-card-body>
+            </abp-card>
 
-			<div class="border-bottom pb-2 mb-2">
-				<h6 class="fw-bold" style="color: var(--purple-color);">
-					<i class="fa fa-comments me-2"></i> @L["Comments"]
-				</h6>
-			</div>
-		</div>
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                <span class="custom-badge badge-cat-@Model.FeatureRequest.CategoryId.ToString().ToLower()">
+                    <i class="fa fa-tag me-1"></i> @L[$"Enum:Category.{(int)Model.FeatureRequest.CategoryId}"]
+                </span>
+                <span class="custom-badge badge-status-@Model.FeatureRequest.Status.ToString().ToLower()">
+                    <i class="fa fa-info-circle me-1"></i> @L[$"Enum:Status.{(int)Model.FeatureRequest.Status}"]
+                </span>
 
-		<div id="comments-section" class="custom-scroll-area">
-			@if (Model.FeatureRequest.Comments == null || !Model.FeatureRequest.Comments.Any())
-			{
-				<div class="text-center py-4">
-					<p class="text-muted">@L["NoCommentsYet"]</p>
-				</div>
-			}
-			else
-			{
-				@foreach (var comment in Model.FeatureRequest.Comments.OrderByDescending(c => c.CreationTime))
-				{
-					<div class="comment-container mb-3 border-bottom pb-3">
-						<div class="comment-avatar">
-							@comment.UserName.Substring(0, 1).ToUpper()
-						</div>
-						<div class="comment-content-box">
-							<div class="comment-header">
-								<span class="comment-username">@comment.UserName</span>
-								<span class="comment-date">@comment.CreationTime.ToString("dd.MM.yyyy HH:mm")</span>
-							</div>
-							<p class="comment-text">@comment.Content</p>
-						</div>
-					</div>
-				}
-			}
-		</div>
+                <div class="vr mx-2 text-secondary opacity-25" style="height: 20px;"></div>
 
-		@if (CurrentUser.IsAuthenticated)
-		{
-			<div class="mt-auto pt-3 border-top bg-white sticky-bottom-area">
-				<div class="d-flex gap-2">
+                <span class="stat-badge stat-badge-success" title="@L["TotalUpvotes"]">
+                    <i class="fa fa-thumbs-up"></i>
+                    <span class="fw-bold">@Model.FeatureRequest.UpVoteCount</span>
+                </span>
+                <span class="stat-badge stat-badge-danger" title="@L["TotalDownvotes"]">
+                    <i class="fa fa-thumbs-down"></i>
+                    <span class="fw-bold">@Model.FeatureRequest.DownVoteCount</span>
+                </span>
+            </div>
 
-					<div class="flex-grow-1">
-						<div class="mb-0">
-							<abp-input asp-for="@Model.NewCommentContent"
-									   suppress-label="true"
-									   rows="1"
-									   placeholder="@L["WriteACommentPlaceholder"].Value"
-									   class="form-control border-0"
-									   style="resize: none;" />
-						</div>
-					</div>
+            <div class="voting-action-bar">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-question-circle text-muted me-2"></i>
+                    <span class="voting-label">@L["DidYouFindThisHelpful"]</span>
+                </div>
+                <div class="btn-group">
+                    <abp-button button-type="@(Model.FeatureRequest.CurrentUserVote == 1 ? Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Success : Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Outline_Success)"
+                                size="Small" icon="thumbs-up" text="@L["Yes"].Value" class="modal-vote-btn px-3"
+                                data-id="@Model.FeatureRequest.Id" data-type="1" />
+                    <abp-button button-type="@(Model.FeatureRequest.CurrentUserVote == -1 ? Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Danger : Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button.AbpButtonType.Outline_Danger)"
+                                size="Small" icon="thumbs-down" text="@L["No"].Value" class="modal-vote-btn px-3"
+                                data-id="@Model.FeatureRequest.Id" data-type="-1" />
+                </div>
+            </div>
 
-					<div>
-						<abp-button icon="paper-plane"
-									id="btn-send-comment"
-									data-id="@Model.FeatureRequest.Id"
-									class="btn-brand-purple btn-circle-send"
-									title="@L["Send"].Value" />
-					</div>
+            <div class="section-header">
+                <i class="fa fa-comments me-2"></i> @L["Comments"]
+            </div>
+        </div>
 
-				</div>
-			</div>
-		}
-		else
-		{
-			<div class="mt-auto pt-3">
-				<abp-alert type="Warning">
-					@L["LoginToCommentMessage", "/Account/Login"]
-				</abp-alert>
-			</div>
-		}
+        <div id="comments-section" class="custom-scroll-area">
+            @if (Model.FeatureRequest.Comments == null || !Model.FeatureRequest.Comments.Any())
+            {
+                <div class="text-center py-5">
+                    <i class="fa fa-comment-slash fa-2x text-muted opacity-25 mb-3"></i>
+                    <p class="text-muted">@L["NoCommentsYet"]</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var comment in Model.FeatureRequest.Comments.OrderByDescending(c => c.CreationTime))
+                {
+                    <div class="comment-container mb-3 border-bottom pb-3">
+                        <div class="d-flex gap-3">
+                            <div class="comment-avatar-circle flex-shrink-0">
+                                @(string.IsNullOrEmpty(comment.UserName) ? "?" : comment.UserName.Substring(0, 1).ToUpper())
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span class="fw-bold text-dark" style="font-size: 0.9rem;">@comment.UserName</span>
+                                    <span class="text-muted small">@comment.CreationTime.ToString("dd.MM.yyyy HH:mm")</span>
+                                </div>
+                                <p class="comment-text">@comment.Content</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
 
-	</abp-modal-body>
+        @if (CurrentUser.IsAuthenticated)
+        {
+            <div class="sticky-bottom-area">
+                <div class="d-flex gap-2">
+                    <div class="flex-grow-1">
+                        <abp-input asp-for="@Model.NewCommentContent"
+                                   suppress-label="true"
+                                   rows="1"
+                                   placeholder="@L["WriteACommentPlaceholder"].Value"
+                                   class="form-control border-0"
+                                   style="resize: none;" />
+                    </div>
+                    <div>
+                        <abp-button button-type="Primary"
+                                    icon="paper-plane"
+                                    id="btn-send-comment"
+                                    data-id="@Model.FeatureRequest.Id"
+                                    class="btn-brand-purple"
+                                    title="@L["Send"].Value" />
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="sticky-bottom-area">
+                <abp-alert type="Warning" class="mb-0 py-2">
+                    @L["LoginToCommentMessage", "/Account/Login"]
+                </abp-alert>
+            </div>
+        }
 
-	<abp-modal-footer>
-		<button type="button" class="btn btn-brand-purple" data-bs-dismiss="modal">
-			@L["Close"]
-		</button>
-	</abp-modal-footer>
+    </abp-modal-body>
+
+    <abp-modal-footer>
+        <abp-button data-bs-dismiss="modal" button-type="Secondary">@L["Close"]</abp-button>
+    </abp-modal-footer>
 
 </abp-modal>

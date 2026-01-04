@@ -5,16 +5,17 @@
 @model FeatureRequestProject.Web.Pages.IndexModel
 @inject IHtmlLocalizer<FeatureRequestProjectResource> L
 @inject ICurrentUser CurrentUser
+
 @section styles {
-<abp-style src="/Pages/Index.css" />
+    <abp-style src="/Pages/Index.css" />
 }
 @section scripts {
-<abp-script src="/Pages/Index.js" />
+    <abp-script src="/Pages/Index.js" />
 }
 
-<div class="container">
-    <div class="p-5 text-center bg-white border rounded-3 shadow-sm mt-4 mb-5 position-relative overflow-hidden">
-        <div style="position: absolute; top: -20px; right: -20px; opacity: 0.1; color: var(--bs-primary); transform: rotate(15deg);">
+<div class="container fade-in-up">
+    <div class="p-5 text-center bg-white border rounded-3 shadow-sm mt-4 mb-5 position-relative overflow-hidden welcome-card">
+        <div class="bg-decoration-icon">
             <i class="fas fa-lightbulb fa-10x"></i>
         </div>
 
@@ -110,22 +111,3 @@
         </p>
     </div>
 </div>
-
-<style>
-    .hover-shadow:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
-    }
-
-    .transition-style {
-        transition: all 0.3s ease;
-    }
-
-    .bg-opacity-10 {
-        --bs-bg-opacity: 0.1;
-    }
-
-    .hover-primary:hover {
-        color: var(--bs-primary) !important;
-    }
-</style>
